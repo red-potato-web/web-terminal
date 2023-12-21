@@ -4,7 +4,7 @@ async function bootAnimation() {
     // speed up writing speed
 
     let message =`
-WEB TERMINAL INTERFACE v0.3
+WEB TERMINAL INTERFACE v0.1
 
 
 
@@ -22,7 +22,7 @@ WEB TERMINAL INTERFACE v0.3
 
 
 `.split(`
-`);//                        It should say "Terminal v0.3"
+`);
     for (let i = 0; i < message.length; i++) {
         // for each line
         TerminalWriteAnimated(message[i]);
