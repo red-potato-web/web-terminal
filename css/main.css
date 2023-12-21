@@ -1,0 +1,123 @@
+:root {
+    /* COLOR VARIABLES */
+    --terminal-bgcolor: #000;
+    --selection-color: #000;
+    --selection-bgcolor: #7eda28;
+    --terminal-prompt-user-color: #7eda28;
+    --terminal-prompt-bling-color: #ddd;
+    --terminal-prompt-typed-color: #f94;
+    --terminal-prompt-cursor-color: #fff;
+    --output-color: #fff;
+    --error-color: #f00;
+    --info-color: #49f;
+    --important-color: #ff0;
+}
+
+body {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+	background: var(--terminal-bgcolor);
+    padding: 0 10px;
+}
+
+#terminal-container {
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+#terminal-container > pre {
+    margin: 0;
+}
+
+::-moz-selection, ::selection {
+    /* Selected text in the webpage (:root in this case) */
+	color: var(--selection-color);
+	background: var(--selection-bgcolor);
+}
+
+#terminal-prompt {
+    display: flex;
+    cursor: text;
+}
+
+#terminal-prompt-user {
+    color: var(--terminal-prompt-user-color);
+}
+
+#terminal-prompt-bling {
+    color: var(--terminal-prompt-bling-color);
+}
+
+#terminal-prompt-typed {
+    color: var(--terminal-prompt-typed-color);
+    margin: 0;
+}
+
+#terminal-prompt-input {
+    /*
+        Hide the input
+        without keeping
+        the user from typing
+        in it.
+    */
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: -30px;
+    left: 0;
+}
+
+#terminal-prompt-cursor {
+    /* This is the cursor. */
+    margin: 0;
+    content: " ";
+    position: relative;
+    height: 1rem;
+    width: 0.5rem;
+    animation: blink 1s linear infinite;
+}
+
+/*
+    The blink animation makes
+    the cursor change color in
+    around 50% of `duration` (1s / 2 = 0.5s)
+*/
+@keyframes blink {
+    0% {
+        background: var(--terminal-prompt-cursor-color);
+    }
+    49% {
+        background: var(--terminal-prompt-cursor-color);
+    }
+    51% {
+        background: transparent;
+    }
+    100% {
+        background: transparent;
+    }
+}
+
+/* OUTPUT, ERROR, INFO and DEBUG */
+.output {
+    color: var(--output-color);
+}
+.info {
+    color: var(--info-color);
+}
+.info::selection {
+    background: var(--info-color);
+}
+.error {
+    color: var(--error-color);
+}
+.error::selection {
+    background: var(--error-color);
+}
+.important {
+    color: var(--important-color);
+}
+.important::selection {
+    background: var(--important-color);
+}

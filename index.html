@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal Interface v0.3</title>
+    <!-- CSS -->
+        <link rel="stylesheet" href="css/main.min.css">
+        <link rel="stylesheet" href="css/main.css">
+    <!-- CSS -->
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
+</head>
+<body>
+    <main id="terminal-container">
+		<noscript>
+			<!--- JavaScript is required -->
+			<pre class="error">
+				JavaScript is required for this app. Sorry!
+			</pre>
+		</noscript>
+        <div id="terminal-prompt">
+            <span id="terminal-prompt-user">user@terminal</span>
+            <span id="terminal-prompt-bling">-></span>
+            <pre id="terminal-prompt-typed"></pre>
+            <pre id="terminal-prompt-cursor"></pre>
+            <!--
+                This textarea element is hidden
+                because all its content
+                is written to terminal-prompt-typed instead.
+            -->
+            <textarea id="terminal-prompt-input" type="text" autofocus ></textarea>
+        </div>
+    </main>
+    <script src="js/terminalInterface.js"></script>
+    <script src="js/bootAnimation.js"></script>
+    <script src="js/terminalCommands.js"></script>
+</body>
+</html>
