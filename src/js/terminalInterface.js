@@ -50,6 +50,17 @@ function TerminalPromptOnKey(event = window.event) {
         }
     } else if (/^Arrow/.test(event.key)) {
         event.preventDefault();
+        switch(event.key){
+            case "ArrowRight":
+            case "ArrowLeft":
+                break;
+            case "ArrowUp":
+                TerminalPromptSuggestUp();
+                break;
+            case "ArrowDown":
+                TerminalPromptSuggestDown();
+                break;
+        }
     } else {
         TerminalScrollBottom();
         TerminalPromptTyped.innerText = TerminalPromptInput.value;
@@ -85,6 +96,8 @@ let TerminalCommands = [];
 function TerminalProcessInput(input) {
     TerminalPrompt.removeEventListener("click", TerminalPromptFocus);
 
+    TerminalPromptSuggestCommand(input);
+
     let CommandSuccess = false;
     let args = input.split(" ");// ["echo", "XZ08"]
 
@@ -103,6 +116,34 @@ function TerminalProcessInput(input) {
     }
     TerminalScrollBottom();
     TerminalPrompt.addEventListener("click", TerminalPromptFocus);
+}
+
+let TerminalSuggestions = [];
+
+let TerminalCurrentSuggestion = 0;
+
+function TerminalPromptSuggestUp(){
+    if (0 <= TerminalCurrentSuggestion) {
+        TerminalSuggestions--;
+    }
+    TerminalPromptInput.value = TerminalSuggestions[TerminalCurrentSuggestion];
+}
+
+function TerminalPromptSuggestDown(){
+    if (TerminalCurrentSuggestion < TerminalSuggestions.length) {
+        TerminalSuggestions++;
+    }
+    TerminalPromptInput.value = TerminalSuggestions[TerminalCurrentSuggestion];
+}
+
+function TerminalPromptSuggestCommand(command){
+    if (TerminalSuggestions.length < 5) {
+        TerminalSuggestions.push(command);
+    } else {
+        TerminalSuggestions.shift();
+        TerminalSuggestions.push(command);
+    }
+    TerminalCurrentSuggestion = TerminalSuggestions.length;
 }
 
 function TerminalCreateLine(lineClass = "output") {
