@@ -1,4 +1,4 @@
 # web-terminal #
-This project is a minimal and small web terminal interface.
+This is a minimal and small web terminal interface.
 ## Demonstration ##
 ![Animated demonstration GIF](/readme_res/img/demonstration.gif)
