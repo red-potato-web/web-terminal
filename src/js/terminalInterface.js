@@ -121,7 +121,7 @@ function TerminalSuggestionOnKey(event){
         case "ArrowDown":
             TerminalPromptSuggestDown();
             break;
-        case default:
+        default:
             break;
     }
 }
