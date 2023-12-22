@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terminal Interface v0.1</title>
+    <title>Terminal Interface v0.1 Demo</title>
 
     <!-- CSS -->
-        <link rel="stylesheet" href="css/main.min.css">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="../src/css/main.min.css">
+        <link rel="stylesheet" href="../src/css/main.css">
     <!-- CSS -->
 
     <!-- ICON --->
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
 </head>
 <body>
     <main id="terminal-container">
@@ -24,7 +25,7 @@
 
         <div id="terminal-prompt">
             <span id="terminal-prompt-user">user@terminal</span>
-            <span id="terminal-prompt-bling">-></span>
+            <span id="terminal-prompt-bling">~$</span>
             <pre id="terminal-prompt-typed"></pre>
             <pre id="terminal-prompt-cursor"></pre>
             <!--
@@ -37,7 +38,7 @@
     </main>
 
     <!-- SCRIPTS -->
-    <script src="js/terminalInterface.js"></script>
+    <script src="../src/js/terminalInterface.js"></script>
     <script src="js/startAnimation.js"></script>
     <script src="js/terminalCommands.js"></script>
 </body>
