@@ -39,6 +39,7 @@ body {
 
 #terminal-container > pre {
     margin: 0;
+    overflow-wrap: break-word;
 }
 
 ::-moz-selection, ::selection {
