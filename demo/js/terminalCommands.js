@@ -1,4 +1,4 @@
-TerminalCommands.push(new TerminalCommand("help", function (subject) {
+TerminalCreateCommand("help", function (subject) {
     if (subject[0]) {
         TerminalWriteStatic(`No help for "${subject[0]}" is available yet.`);
     } else {
@@ -8,22 +8,22 @@ TerminalCommands.push(new TerminalCommand("help", function (subject) {
             TerminalWriteStatic(` ${i + 1}. ${command.name}`);
         });
     }
-}));
+});
 
-TerminalCommands.push(new TerminalCommand("write", function (output) {
+TerminalCreateCommand("write", function (output) {
     TerminalWriteStatic(output.join(" "));
-}));
+});
 
-TerminalCommands.push(new TerminalCommand("clear", function () {
+TerminalCreateCommand("clear", function () {
     TerminalClear();
-}));
+});
 
-TerminalCommands.push(new TerminalCommand("license", function () {
+TerminalCreateCommand("license", function () {
     // Go to the license file.
     location.assign("LICENSE");
-}));
+});
 
-TerminalCommands.push(new TerminalCommand("osver", function () {
+TerminalCreateCommand("osver", function () {
     TerminalWriteAnimationSpeed = 100;
     TerminalWriteStatic();
     TerminalWriteStatic("Terminal Interface v0.3", "info");
@@ -40,9 +40,9 @@ TerminalCommands.push(new TerminalCommand("osver", function () {
         await sleep(500);
         TerminalWriteAnimated("Good Luck!");
     }());
-}));
+});
 
-TerminalCommands.push(new TerminalCommand("nav", function (target) {
+TerminalCreateCommand("nav", function (target) {
 	target = target.map((w)=>escape(w)).join(" ");
 	let message = TerminalWriteStatic(`Navigating to ${target}`);
 	try {
@@ -53,9 +53,9 @@ TerminalCommands.push(new TerminalCommand("nav", function (target) {
 		TerminalWriteStatic("The URL is invalid.", "error");
 		TerminalWriteStatic("Valid URLs : example.org or www.example.org", "error");
 	}
-}));
+});
 
-TerminalCommands.push(new TerminalCommand("exit", async function () {
+TerminalCreateCommand("exit", async function () {
 	let shutDown = TerminalWriteStatic(`Shutting down ...`);
 	await sleep(300);
 	for(let i = 5; i > 0;i--){
@@ -63,10 +63,10 @@ TerminalCommands.push(new TerminalCommand("exit", async function () {
 		await sleep(1000);
 	}
     location.assign("about:blank");
-}));
+});
 
-TerminalCommands.push(new TerminalCommand("restart", async function () {
+TerminalCreateCommand("restart", async function () {
 	TerminalWriteStatic('Restarting ...');
 	await sleep(500);
     location.reload();
-}));
+});

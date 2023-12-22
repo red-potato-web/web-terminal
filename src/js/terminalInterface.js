@@ -4,7 +4,9 @@
 onerror = function (error) {
 	console.log("Fatal error");
 	console.log(error);
-	document.getElementById("terminal-container").innerHTML = '<p style="color: #ff0000;">Fatal Error.<br/>Your browser might be incompatible</p>';
+
+	document.getElementById("terminal-container")
+    .innerHTML = '<p style="color: #ff0000;">Fatal Error.<br/>Your browser might be incompatible</p>';
 }
 
 const $ = (e) => document.getElementById(e);
@@ -14,7 +16,7 @@ function sleep(ms) {
 }
 
 // If the browser can run the code above,
-// then it will probably support the website.
+// then it will probably support our webpageS.
 onerror=()=>undefined;
 
 const TerminalContainer = $("terminal-container");
@@ -49,6 +51,8 @@ function TerminalPromptOnKey(event = window.event) {
             TerminalProcessInput(input);
         }
     } else if (/^Arrow/.test(event.key)) {
+        // if event.key starts with "Arrow"
+
         event.preventDefault();
     } else {
         TerminalScrollBottom();
@@ -68,10 +72,7 @@ function TerminalScrollBottom() {
 }
 
 class TerminalCommand {
-    /**
-     * @param {String} name 
-     * @param {Function} action
-     */
+    // A simple structure for commands
     constructor(name, action){
         this.name = name;
         this.action = action;
@@ -81,6 +82,16 @@ class TerminalCommand {
  * @type {TerminalCommand[]}
  */
 let TerminalCommands = [];
+
+/**
+ * @param {String} name 
+ * @param {Function} action
+ */
+function TerminalCreateCommand (name, action){
+    TerminalCommands.push(
+        new TerminalCommand(name, action)
+    );
+}
 
 function TerminalProcessInput(input) {
     TerminalPrompt.removeEventListener("click", TerminalPromptFocus);
