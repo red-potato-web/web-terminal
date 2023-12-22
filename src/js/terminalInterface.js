@@ -50,17 +50,6 @@ function TerminalPromptOnKey(event = window.event) {
         }
     } else if (/^Arrow/.test(event.key)) {
         event.preventDefault();
-        switch(event.key){
-            case "ArrowRight":
-            case "ArrowLeft":
-                break;
-            case "ArrowUp":
-                TerminalPromptSuggestUp();
-                break;
-            case "ArrowDown":
-                TerminalPromptSuggestDown();
-                break;
-        }
     } else {
         TerminalScrollBottom();
         TerminalPromptTyped.innerText = TerminalPromptInput.value;
@@ -122,18 +111,36 @@ let TerminalSuggestions = [];
 
 let TerminalCurrentSuggestion = 0;
 
+function TerminalSuggestionOnKey(event){
+    switch(event.key){
+        case "ArrowRight":
+        case "ArrowLeft":
+            break;
+        case "ArrowUp":
+            TerminalPromptSuggestUp();
+            break;
+        case "ArrowDown":
+            TerminalPromptSuggestDown();
+            break;
+    }
+}
+
+TerminalPromptInput.addEventListener("keydown", TerminalSuggestionOnKey);
+
 function TerminalPromptSuggestUp(){
-    if (0 <= TerminalCurrentSuggestion) {
-        TerminalSuggestions--;
+    if (1 <= TerminalCurrentSuggestion) {
+        TerminalCurrentSuggestion--;
     }
     TerminalPromptInput.value = TerminalSuggestions[TerminalCurrentSuggestion];
+    TerminalPromptTyped.innerText = TerminalPromptInput.value;
 }
 
 function TerminalPromptSuggestDown(){
     if (TerminalCurrentSuggestion < TerminalSuggestions.length) {
-        TerminalSuggestions++;
+        TerminalCurrentSuggestion++;
     }
-    TerminalPromptInput.value = TerminalSuggestions[TerminalCurrentSuggestion];
+    TerminalPromptInput.value = TerminalSuggestions[TerminalCurrentSuggestion] || "";
+    TerminalPromptTyped.innerText = TerminalPromptInput.value;
 }
 
 function TerminalPromptSuggestCommand(command){
@@ -143,7 +150,7 @@ function TerminalPromptSuggestCommand(command){
         TerminalSuggestions.shift();
         TerminalSuggestions.push(command);
     }
-    TerminalCurrentSuggestion = TerminalSuggestions.length;
+    TerminalCurrentSuggestion = TerminalSuggestions.length - 1;
 }
 
 function TerminalCreateLine(lineClass = "output") {
