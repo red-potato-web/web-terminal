@@ -107,20 +107,21 @@ function TerminalProcessInput(input) {
     TerminalPrompt.addEventListener("click", TerminalPromptFocus);
 }
 
+// SUGGESTIONS
+
 let TerminalSuggestions = [];
 
 let TerminalCurrentSuggestion = 0;
 
 function TerminalSuggestionOnKey(event){
     switch(event.key){
-        case "ArrowRight":
-        case "ArrowLeft":
-            break;
         case "ArrowUp":
             TerminalPromptSuggestUp();
             break;
         case "ArrowDown":
             TerminalPromptSuggestDown();
+            break;
+        case default:
             break;
     }
 }
@@ -129,29 +130,33 @@ TerminalPromptInput.addEventListener("keydown", TerminalSuggestionOnKey);
 
 function TerminalPromptSuggestUp(){
     if (1 <= TerminalCurrentSuggestion) {
-        TerminalCurrentSuggestion--;
+        TerminalCurrentSuggestion--;// Go to earlier suggestions
     }
+    // Update the input
     TerminalPromptInput.value = TerminalSuggestions[TerminalCurrentSuggestion];
     TerminalPromptTyped.innerText = TerminalPromptInput.value;
 }
 
 function TerminalPromptSuggestDown(){
     if (TerminalCurrentSuggestion < TerminalSuggestions.length) {
-        TerminalCurrentSuggestion++;
+        TerminalCurrentSuggestion++;// Go to next suggestions
     }
+    // Update the input
     TerminalPromptInput.value = TerminalSuggestions[TerminalCurrentSuggestion] || "";
     TerminalPromptTyped.innerText = TerminalPromptInput.value;
 }
 
 function TerminalPromptSuggestCommand(command){
-    if (TerminalSuggestions.length < 5) {
-        TerminalSuggestions.push(command);
-    } else {
+    if (TerminalSuggestions.length >= 5) {
+        // The maximum number of suggestions is 5
+
         TerminalSuggestions.shift();
-        TerminalSuggestions.push(command);
     }
+        TerminalSuggestions.push(command);
     TerminalCurrentSuggestion = TerminalSuggestions.length - 1;
 }
+
+// OUTPUT
 
 function TerminalCreateLine(lineClass = "output") {
     let output = document.createElement("pre");
