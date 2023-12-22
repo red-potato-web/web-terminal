@@ -202,7 +202,7 @@ function TerminalWriteAnimated(output = "", type) {
         // Any solution?
 		setTimeout(()=>{
 			outputParagraph.innerText = output.substring(0, completedLength++);
-		}, i*TerminalWriteAnimationSpeed);
+		}, i*(TerminalWriteAnimationSpeed || 20);
 	}
     return outputParagraph;
 }
