@@ -1,5 +1,5 @@
 /*
-	TerminalCommands.push(new TerminalCommand("NAME", function(optionsArray){
+	TerminalCreateCommand("NAME", function(optionsArray){
 		// Do stuff...
 	})));
 */
