@@ -20,7 +20,7 @@ TerminalCreateCommand("clear", function () {
 
 TerminalCreateCommand("license", function () {
     // Go to the license file.
-    location.assign("LICENSE");
+    location.assign("../LICENSE");
 });
 
 TerminalCreateCommand("osver", function () {
