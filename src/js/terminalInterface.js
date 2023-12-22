@@ -130,7 +130,7 @@ TerminalPromptInput.addEventListener("keydown", TerminalSuggestionOnKey);
 
 function TerminalPromptSuggestUp(){
     if (1 <= TerminalCurrentSuggestion) {
-        TerminalCurrentSuggestion--;// Go to earlier suggestions
+        TerminalCurrentSuggestion--;// Go to the previous suggestion
     }
     // Update the input
     TerminalPromptInput.value = TerminalSuggestions[TerminalCurrentSuggestion];
@@ -139,7 +139,7 @@ function TerminalPromptSuggestUp(){
 
 function TerminalPromptSuggestDown(){
     if (TerminalCurrentSuggestion < TerminalSuggestions.length) {
-        TerminalCurrentSuggestion++;// Go to next suggestions
+        TerminalCurrentSuggestion++;// Go to the next suggestion
     }
     // Update the input
     TerminalPromptInput.value = TerminalSuggestions[TerminalCurrentSuggestion] || "";
