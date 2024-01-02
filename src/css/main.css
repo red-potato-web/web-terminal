@@ -18,14 +18,10 @@
   font-family: 'Courier New';
   src: local('Courier New');
 }
-@font-face {
-  font-family: 'Ubuntu';
-  src: local('Ubuntu');
-}
 
 body {
     margin: 0;
-    font-family: 'Ubuntu', 'Courier New', monospace;
+    font-family: 'Courier New', monospace;
     font-size: 1rem;
 	background: var(--terminal-bgcolor);
     padding: 0 10px;
