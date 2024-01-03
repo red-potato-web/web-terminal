@@ -1,23 +1,13 @@
 // Terminal Interface
 
-// First, report incompatibility errors
-onerror = function (error) {
-	console.log("Fatal error");
-	console.log(error);
+// Expect ES6
 
-	document.getElementById("terminal-container")
-    .innerHTML = '<p style="color: #ff0000;">Fatal Error.<br/>Your browser might be incompatible</p>';
-}
 
 const $ = (e) => document.getElementById(e);
 
 function sleep(ms) {
     return new Promise((resolve)=>setTimeout(resolve, ms));
 }
-
-// If the browser can run the code above,
-// then it will probably support our webpageS.
-onerror=()=>undefined;
 
 const TerminalContainer = $("terminal-container");
 const TerminalPrompt = $("terminal-prompt");
@@ -95,6 +85,12 @@ function TerminalCreateCommand (name, action){
 
 function TerminalProcessInput(input) {
     TerminalPrompt.removeEventListener("click", TerminalPromptFocus);
+
+    if (input.trim() === "" || input.substring(0, 1) === " ") {
+        TerminalWriteStatic("Empty input.", "error");
+        console.log("INPUT: Empty input.");
+        return;
+    }
 
     TerminalPromptSuggestCommand(input);
 
